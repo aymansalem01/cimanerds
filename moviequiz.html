@@ -12,122 +12,170 @@
             padding: 0;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #A0282A, #7E2424, #7E2424, #7E2424, #581C1C, #481A1C, #3A1817, #341817, #241415, #241415, #010101, #010101);
+            background-color: #010101;
         }
         .btn {
-            background: linear-gradient(to right, #9E2729, #581618);
-            color: white;
+        background-color: #010101;          
+        color: white;
             font-weight: bold;
         }
         .video {
-            border: solid black 0.5px;
-            width: 95%;
-            padding: 10px;
-            max-height: 300px;
+            max-width: 95%;
             text-align: center;
+            
         }
+        .video-container{
+            width: 700px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .video-container iframe {
+            flex: 1 1 300px;
+            max-width: 1000px;
+        }   
         .video > h2 {
             color: white;
         }
         #user {
             display: none;
         }
-        .video-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+        .btnn1 {
+            display: none;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 25px;
         }
-        .video-container iframe {
-            flex: 1 1 300px;
-            max-width: 300px;
-            height: 200px;
+        .btnn3{
+            display: none;
+            border: #A0282A solid;
+            background-color: white;
+            padding: 10px;
         }
+        .rad{border-radius: 40px;}
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #010101;">
+    <nav class="navbar navbar-expand-lg " style="background-color: #010101; border-bottom: #A0282A solid;">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white; font-family:Irish Grover;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" >ima <span style="color: #A0282A;">N</span>erds</a>
+            <a class="navbar-brand" style="color: white; font-family:Irish Grover; font-size: 25px;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" ><span style="font-size: 25px;">ima</span> <span style="color: #A0282A;">N</span>erds</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <button class="btn mx-5" onclick="window.location = 'index.html'">Home</button>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                <button class="btn mx-4 "><a href="index.html"style="text-decoration: none;color: white ;">Home</a></button>
+                </li>
+                <li class="nav-item">
+                <button class="btn mx-4" ><a href="reco.html" style="text-decoration: none;color: white;">Recommendations </a></button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn px-4  mx-4" type="button" ><a href="chatbot.html" style="text-decoration: none;color: white;">AI Chat</a></button>
                     </li>
-                    <li class="nav-item">
-                        <button class="btn mx-5" onclick="window.location = 'quiz.html'">Quizzes</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn mx-5" onclick="window.location = 'reco.html'">Recommendations</button>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <button class="btn mx-3 px-5" type="button" id="logbtn" onclick="window.location = 'LogIn.html'">Log in</button>
-                    <button class="btn px-5" type="button" id="Signbtn" onclick="window.location = 'Registration.html'">Sign in</button>
-                    <button class="btn px-5" type="button" id="user"></button>
+            </ul>
+            <div class="d-flex">
+                <button class="btn rad mx-3 px-5" type="button" id="logbtn" style="background: linear-gradient(to right, #9E2729, #581618);" ><a href="LogIn.html" style="text-decoration: none;color: white;">Log in</a></button> 
+                <!-------id for button-->
+                <button class="btn rad  px-5" type="button" id="Signbtn" style="background: linear-gradient(to right, #9E2729, #581618);"><a href="Registration.html" style="text-decoration: none;color: white;">Sign in</a></button>
+                
+                <!-------id for button-->
+                <div class="dropdown">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" id="user">
+                    </button>
+                    <ul class="dropdown-menu btn" >
+                    <li><button class="dropdown-item btn" style="color: white;background: linear-gradient(to right, #9E2729, #581618);
+" onclick="logout()">Logout</button></li>
+                    </ul>
                 </div>
             </div>
+        </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div style="color: black; text-align: center; padding-top: 10px;">
+    <div style="color: white; text-align: center; padding-top: 30px;">
         <h1>Welcome to Movie Quiz</h1>
         <h2>Please watch video and attempt quiz</h2>
     </div>
 
-    <div style="justify-items: center; margin-top: 20px;">
+    <div style="justify-items: center; margin-top: 80px;">
+    <h4 style="color: white; text-align: center; ">The Lord of the Rings: The Fellowship of the Ring Recap</h4>
         <div class="video">
-            <h2>The Lord of the Rings: The Fellowship of the Ring Recap</h2>
             <div class="video-container" id="videos1"></div>
         </div>
-        <p class="btn" style="margin: 10px;" id="quiz1">Your mark goes here</p>
-        <button class="btn" style="margin: 10px;" onclick="attempQuiz1()">Attempt Quiz</button>
+        <p class="btnn1" style="margin: 10px;" id="quiz1">Your mark goes here</p>
+        <button class="btn" style="margin: 10px;background: linear-gradient(to right, #9E2729, #581618); margin-top: 20px;" onclick="attempQuiz1()"><a href="" style="color: white;text-decoration: none;">Attempt Quiz</a></button>
     </div>
     <div style="justify-items: center; margin-top: 20px;">
         <div class="video">
             <h2>The Lord of the Rings: The Return of the King Recap</h2>
             <div class="video-container" id="videos2"></div>
         </div>
-        <p class="btn" style="margin: 10px;" id="quiz2">Your mark goes here</p>
-        <button class="btn" style="margin: 10px;" onclick="attempQuiz2()">Attempt Quiz</button>
+        <p class="btnn1" style="margin: 10px;" id="quiz2">Your mark goes here</p>
+        <button class="btn" style="margin: 10px;background: linear-gradient(to right, #9E2729, #581618);margin-top: 20px;" onclick="attempQuiz2()"><a href="" style="color: white;text-decoration: none;">Attempt Quiz</a></button>
     </div>
     <div style="justify-items: center; margin-top: 20px;">
         <div class="video">
             <h2>The Lord of the Rings: The Two Towers Recap</h2>
             <div class="video-container" id="videos3"></div>
         </div>
-        <p class="btn" style="margin: 10px;" id="quiz3">Your mark goes here</p>
-        <button class="btn" style="margin: 10px;" onclick="attempQuiz3()">Attempt Quiz</button>
+        <p class="btnn1" style="margin: 10px;" id="quiz3">Your mark goes here</p>
+        <button class="btn" style="margin: 10px;background: linear-gradient(to right, #9E2729, #581618);margin-top: 20px;" onclick="attempQuiz3()"><a href="" style="color: white;text-decoration: none;">Attempt Quiz</a></button>
     </div>
-
 <script>
-    const API_KEY = 'AIzaSyDD4DCmX3C_XI3E240uVFMEhe3VeQSX2fc'; 
-    // const TOPICS = ['The Lord of the Rings: Return of the King in Minutes | Recap', 'The Lord of the Rings: Fellowship of the Ring in Minutes | Recap', 'The Lord of the Rings: Two Towers in Minutes | Recap']; 
+    
+    const API_KEY = 'AIzaSyDD4DCmX3C_XI3E240uVFMEhe3VeQSX2fc';
     const videoIds = ["s9fXMgwUOIw", "Kl7yVuLiADI", "7WwLwd63uU8"]; 
 
-     
-        function addYouTubeVideo(containerId, videoId) {
-            const container = document.getElementById(containerId);
-            if (container) {
-                const iframe = document.createElement("iframe");
-                iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                iframe.width = "560";
-                iframe.height = "315";
-                iframe.frameBorder = "0";
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                iframe.allowFullscreen = true;
-                container.appendChild(iframe);
+    
+    async function fetchVideoDetails(videoId) {
+        const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data.items && data.items.length > 0) {
+                return data.items[0].snippet; 
+            } else {
+                console.error(`No details found for video ID: ${videoId}`);
+                return null;
             }
+        } catch (error) {
+            console.error(`Error fetching video details: ${error}`);
+            return null;
         }
-        window.onload = function () {
-            addYouTubeVideo("videos1", videoIds[0]);
-            addYouTubeVideo("videos2", videoIds[1]);
-            addYouTubeVideo("videos3", videoIds[2]);
+    }
+
+   
+    function createVideoIframe(videoId) {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.width = "560";
+        iframe.height = "400";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        return iframe;
+    }
+
+    
+    async function addVideosToPage(containerId, videoId) {
+        const container = document.getElementById(containerId);
+        const details = await fetchVideoDetails(videoId);
+        if (details && container) {
+            const iframe = createVideoIframe(videoId);
+            container.appendChild(iframe);
+        }
+    }
+
+    window.onload = function () {
+        addVideosToPage("videos1", videoIds[0]);
+        addVideosToPage("videos2", videoIds[1]);
+        addVideosToPage("videos3", videoIds[2]);
             const userid = document.getElementById("user");
             const Signbtn = document.getElementById("Signbtn");
             const logbtn = document.getElementById("logbtn");
@@ -136,23 +184,29 @@
             const quiz1 = document.getElementById("quiz1");
             const quiz2 = document.getElementById("quiz2");
             const quiz3 = document.getElementById("quiz3");
-            const score1 = sessionStorage.getItem("score1") || "";
-            const score2 = sessionStorage.getItem("score2") || "";
-            const score3 = sessionStorage.getItem("score3") || "";
+            const score1 = localStorage.getItem("score1") || "";
+            const score2 = localStorage.getItem("score2") || "";
+            const score3 = localStorage.getItem("score3") || "";
             if (isLogin && username != "") {
                 Signbtn.style.display = "none";
                 logbtn.style.display = "none";
                 userid.style.display = "block";
                 userid.textContent = "hi: " + username;
+                userid.style.background="linear-gradient(to right, #9E2729, #581618";
             }
-            if (score1 != "") {
-                quiz1.textContent = score1;
+            if (score1 !== "" && isLogin) {
+                quiz1.textContent = "Your score is: "+ score1 + "/5";
+                quiz1.style.display ="block"
             }
-            if (score2 != "") {
-                quiz2.textContent = score2;
+            if (score2 !== "" && isLogin) {
+                quiz2.textContent = "Your score is: "+ score2 + "/5";
+                quiz2.style.display ="block"
+
             }
-            if (score3 != "") {
-                quiz3.textContent = score3;
+            if (score3 !== "" && isLogin) {
+                quiz3.textContent = "Your score is: "+ score3 + "/5";
+                quiz3.style.display ="block"
+
             }
         };
         function attempQuiz1() {
@@ -162,7 +216,7 @@
                 localStorage.setItem("quizAnswers", []);
                 window.open("quiz1/quizone-1.html");
             } else {
-                alert("بتخخوث ؟؟ بدك تفوت بدون اكاونت");
+                alert("Please Sign in first");
             }
         }
         function attempQuiz2() {
@@ -172,7 +226,7 @@
                 localStorage.setItem("quizAnswers", []);
                 window.open("quiz2/quiztwo-1.html");
             } else {
-                alert("بتخخوث ؟؟ بدك تفوت بدون اكاونت");
+                alert("Please Sign in first");
             }
         }
         function attempQuiz3() {
@@ -182,9 +236,10 @@
                 localStorage.setItem("quizAnswers", []);
                 window.open("quiz3/quizthree-1.html");
             } else {
-                alert("بتخخوث ؟؟ بدك تفوت بدون اكاونت");
+                alert("Please Sign in first");
             }
         }
+      
 </script>
 </body>
 </html>

@@ -12,48 +12,67 @@
             padding: 0;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #A0282A, #7E2424, #7E2424, #7E2424, #581C1C,   #481A1C, #3A1817,#341817,#241415,#241415,#010101,#010101);
-            
+            background-color: #010101;            
         }
-        .card{background:linear-gradient(to right,#9E2729,#581618) ; color: white;}
+        a:hover{
+            color: #9E2729;
+        }
+        .card{background:linear-gradient(to right,#9E2729,#581618) ; color: white;
+        }
+        .card:hover{
+            box-shadow: 0 10px 15px 5px rgba(153, 13, 13, 0.886), 0 6px 20px 0 rgba(216, 11, 11, 0.19);
+        }
         .cardpar{display: flex; justify-content: space-around; flex-wrap: wrap;gap: 40px;}
         .card > div {text-align: center;}
-        .btn{background:linear-gradient(to right,#9E2729,#581618) ; color: white;}
+        .btn{background-color: black ; color: white;}
         #user{display: none;}
         img{height: 200px;}
+        .rad{border-radius: 40px;}
+        .aa{
+            text-decoration: none;color: white;
+        }
     </style>
 </head>
 <body>
     <!---------------nav bar -------------------->
-    <nav class="navbar navbar-expand-lg " style="background-color: #010101;">
+    <nav class="navbar navbar-expand-lg " style="background-color: #010101; border-bottom: #A0282A solid .5px; ">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white; font-family:Irish Grover;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" >ima <span style="color: #A0282A;">N</span>erds</a>
+            <a class="navbar-brand" style="color: white; font-family:Irish Grover; font-size: 25px;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" ><span style="font-size: 25px;">ima</span> <span style="color: #A0282A;">N</span>erds</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <button class="btn mx-5 " onclick="window.location = 'index.html'">Home</button>
+                <button class="btn mx-4 "><a href="index.html" class="aa">Home</a></button>
                 </li>
                 <li class="nav-item">
-                <button class="btn mx-5" onclick="window.location = 'reco.html'">Recommendations</button>
+                <button class="btn mx-4" ><a href="reco.html" style="text-decoration: none;color: white;">Recommendations </a></button>
                 </li>
+                <li class="nav-item">
+                    <button class="btn px-4  mx-4" type="button" ><a href="chatbot.html" style="text-decoration: none;color: white;">AI Chat</a></button>
+                    </li>
             </ul>
             <div class="d-flex">
-                <button class="btn  mx-3 px-5" type="button" id="logbtn" onclick="window.location = 'LogIn.html'">Log in</button> 
+                <button class="btn rad  mx-3 px-5" type="button" id="logbtn" style="background:linear-gradient(to right,#9E2729,#581618)" ><a href="LogIn.html" style="text-decoration: none;color: white;">Log in</a></button> 
                 <!-------id for button-->
-                <button class="btn  px-5" type="button" id="Signbtn" onclick="window.location = 'Registration.html'">Sign in</button>
+                <button class="btn rad px-5" type="button" id="Signbtn" style="background:linear-gradient(to right,#9E2729,#581618)"><a href="Registration.html" style="text-decoration: none;color: white;">Sign in</a></button>
+                
                 <!-------id for button-->
-                <button class="btn  px-5" type="button" id="user"></button>
-                <!-----------user id for show user name when log in-->
+                <div class="dropdown">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" id="user" style="background:linear-gradient(to right,#9E2729,#581618)">
+                    </button>
+                    <ul class="dropdown-menu btn" >
+                    <li><button class="dropdown-item btn" style="color: white; background:linear-gradient(to right,#9E2729,#581618)" onclick="logout()">Logout</button></li>
+                    </ul>
+                </div>
             </div>
         </div>
         </div>
     </nav>
     <!---------------------------------------end nav bar ------------------------------------------------>
     <!-----------------------welcome text-->
-    <div style="color: black; text-align: center; padding-top: 10px;">
+    <div style="color: white; text-align: center; padding-top: 10px;">
         <h1>Welcome Quiz page </h1>
         <h2>Select topic </h2>
     </div>
@@ -98,14 +117,14 @@
         <div class="card mx-3" style="width:300px">
             <img class="card-img-top" src="img/mix/tur.jpg" style="width:100%">
             <div class="card-body">
-                <h4 class="card-title">Turkie series</h4>
+                <h4 class="card-title">Turkish series</h4>
                 <button class="btn">Coming soon</button>
             </div>
         </div>
         <div class="card mx-3" style="width:300px">
             <img class="card-img-top" src="img/mix/ko.jpg" style="width:100%">
             <div class="card-body">
-                <h4 class="card-title">koriean</h4>
+                <h4 class="card-title">korean</h4>
                 <button class="btn">Coming soon</button>
             </div>
         </div>
@@ -137,6 +156,7 @@
                 logbtn.style.display = "none";
                 userid.style.display = "block";
                 userid.textContent =  "hi: " + username;
+                userid.style.background ="linear-gradient(to right,#9E2729,#581618)"
             }
         }
         

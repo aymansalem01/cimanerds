@@ -12,54 +12,65 @@
             padding: 0;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #A0282A, #7E2424, #7E2424, #7E2424, #581C1C,   #481A1C, #3A1817,#341817,#241415,#241415,#010101,#010101);
-            
+            background-color: #010101;            
         }
         .card{background-color: aliceblue ; color: black;}
         .cardpar{display: flex; justify-content: space-around; flex-wrap: wrap;gap: 40px;}
         .card > div {text-align: center;}
-        .btn{background:linear-gradient(to right,#9E2729,#581618) ; color: white;}
+        .btn{background-color: #010101; color: white;border-radius: 40px;}
         #user{display: none;}
         img{height: 200px;}
     </style>
 </head>
 <body>
     <!---------------nav bar -------------------->
-    <nav class="navbar navbar-expand-lg " style="background-color: #010101;">
+    <nav class="navbar navbar-expand-lg " style="background-color: #010101; border-bottom: #A0282A solid;">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white; font-family:Irish Grover;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" >ima <span style="color: #A0282A;">N</span>erds</a>
+            <a class="navbar-brand" style="color: white; font-family:Irish Grover; font-size: 25px;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" ><span style="font-size: 25px;">ima</span> <span style="color: #A0282A;">N</span>erds</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <button class="btn mx-5 " onclick="window.location = 'index.html'">Home</button>
+                <button class="btn mx-4 "><a href="quiz.html"style="text-decoration: none;color: white;">Quizzes</a></button>
                 </li>
                 <li class="nav-item">
-                <button class="btn mx-5" onclick="window.location = 'quiz.html'">Quizzes</button>
+                <button class="btn mx-4" ><a href="reco.html" style="text-decoration: none;color: white;">Recommendations </a></button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn mx-5" onclick="window.location = 'reco.html'">Recommendations</button>
+                    <button class="btn px-4  mx-4" type="button" ><a href="chatbot.html" style="text-decoration: none;color: white;">AI Chat</a></button>
                     </li>
             </ul>
+            <div class="d-flex">
+                <button class="btn  mx-3 px-5" type="button" id="logbtn"  style="background:linear-gradient(to right,#9E2729,#581618)"><a href="LogIn.html" style="text-decoration: none;color: white;">Log in</a></button> 
+                <!-------id for button-->
+                <button class="btn  px-5" type="button" id="Signbtn" style="background:linear-gradient(to right,#9E2729,#581618)"><a href="Registration.html" style="text-decoration: none;color: white;">Sign in</a></button>
+                <!-------id for button-->
+                <div class="dropdown">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" id="user">
+                    </button>
+                    <ul class="dropdown-menu btn" >
+                    <li><button class="dropdown-item btn" style="color: white;" onclick="logout()">Logout</button></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         </div>
     </nav>
     <!---------------------------------------end nav bar ------------------------------------------------>
     <!--------------------wlocome text ------------------->
-    <div style="color: black; text-align: center; padding-top: 10px;">
+    <div style="color: white; text-align: center; padding-top: 10px;">
         <h1>Welcome to Anime Recommendations  </h1>
         <h2>Here the best Animes ever </h2>
     </div>
     <!----------------end welcome text------------>
     <!-----------------topic card ----------------------->
-
     <div class="cardpar pt-5 mb-5">
         <div class="card mx-3" style="width:300px">
             <img class="card-img-top" src="img\anime\onepiece.png" style="width:100%">
             <div class="card-body">
-                <h4 class="card-title">One piece you'r uncel</h4>
+                <h4 class="card-title">One piece</h4>
                 <p style="text-align: start;">One Piece is a Japanese manga and anime about Monkey D. Luffy, a pirate with a rubber body, and his crew seeking the legendary treasure "One Piece" to become Pirate King. It's a story of adventure, friendship, and dreams. </p>
             </div>
         </div>
@@ -98,7 +109,6 @@
                 <p style="text-align: start;"> A Japanese manga about Kafka Hibino, a man who gains the ability to transform into a kaiju (monster). He uses his new powers to protect humanity from monstrous threats while hiding his secret.</p>
             </div>
         </div>
-        
         <div class="card mx-3" style="width:300px">
             <img class="card-img-top" src="img\anime\mashle.jpg" style="width:100%">
             <div class="card-body">
@@ -143,6 +153,21 @@
         </div>
         </div>
         <!-----------------end topic card ------------------->
-    
+        <script>
+            window.onload = function(){
+            const userid = document.getElementById("user");
+            const Signbtn = document.getElementById("Signbtn");
+            const logbtn = document.getElementById("logbtn");
+            const isLogin = sessionStorage.getItem("isLogin");
+            const username = sessionStorage.getItem("name") || "";
+            if(isLogin && username!= ""){
+                Signbtn.style.display = "none";
+                logbtn.style.display = "none";
+                userid.style.display = "block";
+                userid.textContent =  "hi: " + username;
+                userid.style.background ="linear-gradient(to right,#9E2729,#581618)"
+            }
+        }
+        </script>
 </body>
 </html>

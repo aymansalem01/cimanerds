@@ -12,22 +12,25 @@
             padding: 0;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(to bottom, #A0282A, #7E2424, #7E2424, #7E2424, #581C1C,   #481A1C, #3A1817,#341817,#241415,#241415,#010101,#010101);
+            background-color: #010101;
         }
-        .btn{background:linear-gradient(to right,#9E2729,#581618) ; color: white; font-weight: bold;}
+        .btn{background-color: #010101; color: white; font-weight: bold;}
         #user{display: none;}
         .custom-shadow:hover{
             box-shadow: 0 0 20px red;
         }
         #aichat{
-            width: 70%;
+            width: 50%;
             margin-top: 40px;
+            height: 550px;
+            scroll-behavior: unset;
         }
         #aichat > *{
             margin: 20px;
             padding: 15px;
             width: 50%;
         }
+        .rad{border-radius: 40px;}
     </style>
 </head>
 <body>
@@ -39,84 +42,122 @@
         }
 </script>
     <!---------------nav bar -------------------->
-    <nav class="navbar navbar-expand-lg " style="background-color: #010101;">
+    <nav class="navbar navbar-expand-lg " style="background-color: #010101; border-bottom: #A0282A solid;">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white; font-family:Irish Grover;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" >ima <span style="color: #A0282A;">N</span>erds</a>
+            <a class="navbar-brand" style="color: white; font-family:Irish Grover; font-size: 25px;"  > <img src="img/mix/logo.png" style="height: 50px; margin-top: -7px;" ><span style="font-size: 25px;">ima</span> <span style="color: #A0282A;">N</span>erds</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <button class="btn mx-5 " onclick="window.location = 'index.html'">Home</button>
+                    <button class="btn mx-4 "><a href="index.html"style="text-decoration: none;color: white;">Home</a></button>
+                    </li>
+                <li class="nav-item">
+                <button class="btn mx-4 "><a href="quiz.html"style="text-decoration: none;color: white;">Quizzes</a></button>
                 </li>
                 <li class="nav-item">
-                <button class="btn mx-5" onclick="window.location = 'quiz.html'">Quizzes</button>
+                <button class="btn mx-4" ><a href="reco.html" style="text-decoration: none;color: white;">Recommendations </a></button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn mx-5" onclick="window.location = 'reco.html'">Recommendations</button>
+                    <button class="btn px-4  mx-4" type="button" ><a href="chatbot.html" style="text-decoration: none;color: white;">AI Chat</a></button>
                     </li>
             </ul>
             <div class="d-flex">
-                <button class="btn  mx-3 px-5" type="button" id="logbtn" ><a href="LogIn.html" style="text-decoration: none;color: white;">Log in</a></button> 
+                <button class="btn rad  mx-3 px-5" type="button" id="logbtn" style="background:linear-gradient(to right,#9E2729,#581618)" ><a href="LogIn.html" style="text-decoration: none;color: white;">Log in</a></button> 
                 <!-------id for button-->
-                <button class="btn  px-5" type="button" id="Signbtn"><a href="Registration.html" style="text-decoration: none;color: white;">Sign in</a></button>
+                <button class="btn rad  px-5" type="button" id="Signbtn" style="background:linear-gradient(to right,#9E2729,#581618)" ><a href="Registration.html" style="text-decoration: none;color: white;">Sign in</a></button>
                 <!-------id for button-->
-                <button class="btn  px-5" type="button" id="user"></button>
-                <!-----------user id for show user name when log in-->
+                <div class="dropdown">
+                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown" id="user">
+                    </button>
+                    <ul class="dropdown-menu btn" >
+                    <li><button class="dropdown-item btn" style="color: white;" onclick="logout()">Logout</button></li>
+                    </ul>
+                </div>
             </div>
         </div>
         </div>
     </nav>
     <div style="color: black; padding-top: 10px;" id="aichat">
     </div>
-    <div class="container-fluid" style="position: absolute; bottom: 20px; justify-items: center;">
+    <div class="container-fluid" style="position: absolute; bottom: 20px; justify-items: center; ">
         <form class="d-flex" role="send">
         <input class="form-control me-2 custom-shadow w-5" type="text" placeholder="As AI about your movie " aria-label="text" id="chatin"  style="width: 90%;">
-        <button type="button" class="btn btn-danger" id="sendchat" style="color: white;">Ask me ya habibi
-        </button>
+        <button type="button" class="btn " id="sendchat" style="color: white; background:linear-gradient(to right,#9E2729,#581618) ;width:120px   ;">send</button>
         </form>
         </div> 
 <script type="module">
-            import { GoogleGenerativeAI } from "@google/generative-ai";
-            const genAI = new GoogleGenerativeAI("AIzaSyBhS0N62ZAT8XxPiQTRlGALThoVj3IGnAM");
-            document.getElementById("sendchat").addEventListener("click",run)
-            async function run(){
-                const input = document.getElementById("chatin");
-                const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-                if(input.value != ""){
-                    const prompt = "answer in 2 line max if the user ask about somthing that's not related to movies or tv shows answer it -> (موقع افلام ترا شوفلك موقع ثاني) " + input.value;
-                    const result = await model.generateContent(prompt);
-                const response = await result.response.text();
-                console.log(response);
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+    const genAI = new GoogleGenerativeAI("AIzaSyBhS0N62ZAT8XxPiQTRlGALThoVj3IGnAM");
+    document.getElementById("sendchat").addEventListener("click",run)
+    async function run(){
+            const input = document.getElementById("chatin");
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            if(input.value != ""){
+                const prompt = "answer in 2 line max should be only related to  all kinds of movies,tv shows and anime when i put the name or ask about it if else write(I only answer questions that's releated to movies..etc) " + input.value;
+                const result = await model.generateContent(prompt);
+            const response = await result.response.text();
+            console.log(response);
+            showchat(response);
+            }
+            else if(input.value == ""){
+                const response = "There's no question to answer kindly write anything that's releated to movies..etc";
                 showchat(response);
-                }
-                else{
-                    alert("اكتبلك اشي تسال عنو قبل ما تكبس");
-                }
-                }
-                function showchat(answer){
-                    const question = document.getElementById("chatin").value
-                    const pardiv = document.getElementById("aichat");
-                    const an = "chat message : " + answer;
-                    const qu ="you : " + question;
-                    const anpar = document.createElement("p");
-                    const qupar = document.createElement("span");
-                    qupar.style.backgroundColor = "white";
-                    qupar.style.border = "solid balck"
-                    qupar.style.color = "black"
-                    qupar.style.textAlign = "start";
-                    anpar.style.color = "white"
-                    anpar.style.backgroundColor = "gray";
-                    anpar.style.border = "solid red .1px"
-                    const nodean = document.createTextNode(an);
-                    const nodequ = document.createTextNode(qu);
-                    anpar.appendChild(nodean);
-                    qupar.appendChild(nodequ);
-                    pardiv.appendChild(qupar);
-                    pardiv.appendChild(anpar);
-                    document.getElementById("chatin").value = "";
-                }
+            }
+            }
+        function showchat(answer){
+            const question = document.getElementById("chatin").value
+            const pardiv = document.getElementById("aichat");
+            const an = "chat message : " + answer;
+            const qu ="your message : " + question;
+            const anpar = document.createElement("p");
+            const qupar = document.createElement("span");
+            qupar.style.backgroundColor = "white";
+            qupar.style.border = "solid balck"
+            qupar.style.color = "black"
+            qupar.style.textAlign = "start";
+            anpar.style.color = "white"
+            anpar.style.backgroundColor = "gray";
+            anpar.style.border = "solid red .1px"
+            const nodean = document.createTextNode(an);
+            const nodequ = document.createTextNode(qu);
+            anpar.appendChild(nodean);
+            qupar.appendChild(nodequ);
+            pardiv.appendChild(qupar);
+            pardiv.appendChild(anpar);
+            document.getElementById("chatin").value = "";
+        }
+        window.onload = function(){
+    const userid = document.getElementById("user");
+    const Signbtn = document.getElementById("Signbtn");
+    const logbtn = document.getElementById("logbtn");
+    const isLogin = sessionStorage.getItem("isLogin");
+    const username = sessionStorage.getItem("name") || "";
+    if(isLogin && username!= ""){
+        Signbtn.style.display = "none";
+        logbtn.style.display = "none";
+        userid.style.display = "block";
+        userid.textContent =  "hi: " + username;
+        userid.style.background ="linear-gradient(to right,#9E2729,#581618)"
+    }
+}
 </script>
+<!-- <script>
+    window.onload = function(){
+    const userid = document.getElementById("user");
+    const Signbtn = document.getElementById("Signbtn");
+    const logbtn = document.getElementById("logbtn");
+    const isLogin = sessionStorage.getItem("isLogin");
+    const username = sessionStorage.getItem("name") || "";
+    if(isLogin && username!= ""){
+        Signbtn.style.display = "none";
+        logbtn.style.display = "none";
+        userid.style.display = "block";
+        userid.textContent =  "hi: " + username;
+        userid.style.background ="linear-gradient(to right,#9E2729,#581618)"
+    }
+}
+</script> -->
 </body>
 </html>
